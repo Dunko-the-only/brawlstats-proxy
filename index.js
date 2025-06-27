@@ -2,12 +2,26 @@ require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
-
+const PLAYER_TAG = '%23U8RCLU2GP'; 
 const app = express();
 app.use(cors());
 
 const PORT = 3000;
 const API_URL = 'https://api.brawlstars.com/v1';
+
+app.get('', async (req, res) => {
+  try {
+    const response = await axios.get(`https://api.brawlstars.com/v1/players/%23${PLAYER_TAG}`, {
+      headers: {
+        Authorization: `Bearer ${API_KEY}`
+      }
+    });
+    res.json(response.data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 const api = axios.create({
   baseURL: API_URL,
@@ -16,17 +30,6 @@ const api = axios.create({
   },
 });
 
-app.get('/player/:tag', async (req, res) => {
-  const tag = req.params.tag.replace('#', '%23');
-  try {
-    const response = await api.get(`/players/${tag}`);
-    res.json(response.data);
-  } catch (err) {
-    console.error(err.response?.data || err.message);
-    res.status(500).json({ error: 'Erreur Brawl Stars API' });
-  }
-});
 
-app.listen(PORT, () => {
-  console.log(`✅ Proxy Brawl Stars lancé sur http://localhost:${PORT}`);
-});
+
+
