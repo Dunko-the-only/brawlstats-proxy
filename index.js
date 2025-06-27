@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
-const PLAYER_TAG = '%23U8RCLU2GP'; 
+const PLAYER_TAG = 'U8RCLU2GP'; 
 const app = express();
 app.use(cors());
 
@@ -20,6 +20,10 @@ app.get('', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+});
+
+app .listen(PORT, () => {
+  console.log(`Server is running properly, congratulations!`);
 });
 
 
