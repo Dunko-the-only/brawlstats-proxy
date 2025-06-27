@@ -3,7 +3,7 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 
-const PLAYER_TAG = 'U8RCLU2GP';
+const PLAYER_TAG = '%23U8RCLU2GP';
 const app = express();
 app.use(cors());
 
@@ -13,7 +13,7 @@ const API_URL = 'https://api.brawlstars.com/v1';
 app.get('/', async (req, res) => {
   try {
     console.log('Fetching data for player tag:', PLAYER_TAG);
-    const response = await axios.get(`${API_URL}/players/%23${PLAYER_TAG}`, {
+    const response = await axios.get(`${API_URL}/players/${PLAYER_TAG}`, {
       headers: {
         Authorization: `Bearer ${process.env.BRAWL_API_KEY_}`
       }
