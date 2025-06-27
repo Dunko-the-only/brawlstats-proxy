@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: brawlstats-proxy
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: BRAWL_API_KEY
+        sync: false
