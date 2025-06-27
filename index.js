@@ -15,7 +15,7 @@ app.get('/', async (req, res) => {
     console.log('Fetching data for player tag:', PLAYER_TAG);
     const response = await axios.get(`${API_URL}/players/${PLAYER_TAG}`, {
       headers: {
-        Authorization: `Bearer ${process.env.BRAWL_API_KEY_}`
+        Authorization: `Bearer ${process.env.BRAWL_API_KEY}`
       }
     });
     res.json(response.data);
